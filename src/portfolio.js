@@ -161,7 +161,7 @@ const workExperiences = {
   display: true,
   experience: [
     {
-      role: "Freelance System Archstem",
+      role: "Freelance System Architecture", // updated
       company: "Self-Employed",
       companylogo: require("./containers/assets/image/image.jpg"),
       date: "2024 – Present",
