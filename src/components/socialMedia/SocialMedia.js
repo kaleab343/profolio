@@ -42,11 +42,18 @@ export default function SocialMedia() {
   const handleCloseEmail = useCallback(() => setEmailOpen(false), []);
 
   const handleSubmitEmail = useCallback(async (data) => {
-    // Collect fields
-    const email = (data.fromEmail || "").trim();
+    // Require all fields
     const name = (data.fromName || "").trim();
+    const email = (data.fromEmail || "").trim();
     const subjectRaw = (data.subject || "").trim();
     const messageRaw = (data.message || "").trim();
+    if (!name || !email || !subjectRaw || !messageRaw) {
+      alert("Please complete all fields before sending.");
+      return false; // prevent modal from showing success/closing
+    }
+
+    // Fields already collected above during required-field check
+    // Using existing variables: name, email, subjectRaw, messageRaw
 
     // Send directly to Telegram
     const token = telegramConfig.token?.trim();
@@ -76,8 +83,8 @@ export default function SocialMedia() {
         alert("Couldn't send message to Telegram. Please try again later.");
         return;
       }
-      alert("Thanks! Your message was sent.");
-      setEmailOpen(false);
+      // return true to let modal show a success and auto-close
+      return true;
     } catch (e) {
       console.error("Telegram network error:", e);
       alert("Network error sending to Telegram. You can try again later.");
@@ -129,6 +136,7 @@ export default function SocialMedia() {
         isDark={isDark}
         onClose={handleCloseEmail}
         onSubmit={handleSubmitEmail}
+      successText="Thanks! I will contact you soon."
       />
 
       {socialMediaLinks.gitlab ? (

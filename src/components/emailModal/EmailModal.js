@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import "./EmailModal.scss";
 
-export default function EmailModal({ isOpen, onClose, onSubmit, isDark }) {
+export default function EmailModal({ isOpen, onClose, onSubmit, isDark, successText }) {
   const dialogRef = useRef(null);
 
   useEffect(() => {
@@ -25,11 +25,26 @@ export default function EmailModal({ isOpen, onClose, onSubmit, isDark }) {
     if (e.target === e.currentTarget) onClose?.();
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     const form = e.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
-    onSubmit?.(data);
+    const res = await onSubmit?.(data);
+    if (res !== false) {
+      // show success inline, then close after delay
+      try {
+        const btn = form.querySelector(".btn-primary");
+        if (btn) btn.disabled = true;
+      } catch {}
+      const banner = document.createElement("div");
+      banner.textContent = successText || "Thanks! I will contact you soon.";
+      banner.style.marginTop = "8px";
+      banner.style.color = "#16a34a";
+      form.appendChild(banner);
+      setTimeout(() => {
+        onClose?.();
+      }, 1200);
+    }
   }
 
   return ReactDOM.createPortal(
@@ -44,19 +59,19 @@ export default function EmailModal({ isOpen, onClose, onSubmit, isDark }) {
         <form className="email-modal-body email-form" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="fromName">Your name</label>
-            <input id="fromName" name="fromName" type="text" className="email-input" placeholder="John Doe" />
+            <input id="fromName" name="fromName" type="text" className="email-input" placeholder="John Doe" required />
           </div>
           <div>
             <label htmlFor="fromEmail">Your email</label>
-            <input id="fromEmail" name="fromEmail" type="email" className="email-input" placeholder="you@example.com" />
+            <input id="fromEmail" name="fromEmail" type="email" className="email-input" placeholder="you@example.com" required />
           </div>
           <div>
             <label htmlFor="subject">Subject</label>
-            <input id="subject" name="subject" type="text" className="email-input" placeholder="Subject" />
+            <input id="subject" name="subject" type="text" className="email-input" placeholder="Subject" required />
           </div>
           <div className="stacked-row">
             <label htmlFor="message">Message</label>
-            <textarea id="message" name="message" className="email-textarea" placeholder="Write your message..." />
+            <textarea id="message" name="message" className="email-textarea" placeholder="Write your message..." required />
           </div>
           <div className="email-modal-footer">
             <button type="button" className="btn btn-secondary" onClick={onClose}>Cancel</button>
