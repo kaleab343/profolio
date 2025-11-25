@@ -7,6 +7,8 @@
 import emoji from "react-easy-emoji";
 import { ReactComponent as CppLogo } from "./assets/images/cpp_logo.svg";
 import { ReactComponent as SupabaseLogo } from "./assets/images/supabase_logo.svg";
+import { ReactComponent as DockerLogo } from "./assets/images/docker_logo.svg";
+import { ReactComponent as KubeLogo } from "./assets/images/kubernetes_logo.svg";
 import splashAnimation from "./assets/lottie/splashAnimation"; // Rename to your file name for custom animation
 
 // Splash Screen
@@ -71,6 +73,8 @@ const skillsSection = {
     { skillName: "Supabase", svgComponent: SupabaseLogo },
     { skillName: "C++", svgComponent: CppLogo },
     { skillName: "SQL", fontAwesomeClassname: "fas fa-database" },
+    { skillName: "Docker", svgComponent: DockerLogo },
+    { skillName: "Kubernetes", svgComponent: KubeLogo },
     { skillName: "VS Code", fontAwesomeClassname: "fas fa-terminal" },
     { skillName: "HTML5", fontAwesomeClassname: "fab fa-html5" },
     { skillName: "CSS3", fontAwesomeClassname: "fab fa-css3-alt" }

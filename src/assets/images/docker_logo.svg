@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+  <!-- Simplified Docker whale composed with blocks; uses currentColor and no background -->
+  <path d="M64 136h24v-24H64v24zm32 0h24v-24H96v24zm32 0h24v-24h-24v24zM64 104h24V80H64v24zm32 0h24V80H96v24zm32 0h24V80h-24v24zm32 32h24v-24h-24v24z"/>
+  <path d="M212 128c-6 0-12 2-16 6-5-9-15-14-26-14-17 0-30 13-30 30 0 1 0 2 .1 3H72c-9 0-16-7-16-16v-1H48c-4 0-8 3-8 8 0 22 18 40 40 40h84c30 0 56-23 56-52 0-2 0-4-.1-6h-8z"/>
+</svg>

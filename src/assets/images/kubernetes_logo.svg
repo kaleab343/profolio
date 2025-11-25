@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+  <!-- Simplified Kubernetes helm shape; uses currentColor and no background -->
+  <path d="M128 60l60 34v68l-60 34-60-34V94l60-34zm0 18l-44 25v50l44 25 44-25V103l-44-25zm0 20a8 8 0 110 16 8 8 0 010-16zm0 76a8 8 0 110-16 8 8 0 010 16zm38-38a8 8 0 11-16 0 8 8 0 0116 0zM106 136a8 8 0 11-16 0 8 8 0 0116 0zm55-23a8 8 0 110 16 8 8 0 010-16zM115 119a8 8 0 110 16 8 8 0 010-16z"/>
+</svg>
