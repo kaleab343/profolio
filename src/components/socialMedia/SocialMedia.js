@@ -1,8 +1,89 @@
-import React from "react";
+import React, { useState, useContext, useCallback } from "react";
 import "./SocialMedia.scss";
-import {socialMediaLinks} from "../../portfolio";
+import EmailModal from "../emailModal/EmailModal";
+import StyleContext from "../../contexts/StyleContext";
+import {socialMediaLinks, telegramConfig} from "../../portfolio";
 
-export default function socialMedia() {
+export default function SocialMedia() {
+  const { isDark } = useContext(StyleContext);
+  const [isEmailOpen, setEmailOpen] = useState(false);
+
+  const handleOpenEmail = useCallback((e) => {
+    e?.preventDefault?.();
+    setEmailOpen(true);
+  }, []);
+
+  // Robust MX check using public DNS-over-HTTPS providers
+  const checkEmailDomainMx = useCallback(async (domain) => {
+    const providers = [
+      async () => {
+        const res = await fetch(`https://dns.google/resolve?name=${encodeURIComponent(domain)}&type=MX`);
+        return res.json();
+      },
+      async () => {
+        const res = await fetch(`https://cloudflare-dns.com/dns-query?name=${encodeURIComponent(domain)}&type=MX`, {
+          headers: { Accept: "application/dns-json" }
+        });
+        return res.json();
+      }
+    ];
+    for (const fn of providers) {
+      try {
+        const json = await fn();
+        const ok = json && json.Status === 0 && Array.isArray(json.Answer) && json.Answer.some(a => a.type === 15);
+        if (ok) return true;
+      } catch (e) {
+        // try next provider
+      }
+    }
+    return false;
+  }, []);
+
+  const handleCloseEmail = useCallback(() => setEmailOpen(false), []);
+
+  const handleSubmitEmail = useCallback(async (data) => {
+    // Collect fields
+    const email = (data.fromEmail || "").trim();
+    const name = (data.fromName || "").trim();
+    const subjectRaw = (data.subject || "").trim();
+    const messageRaw = (data.message || "").trim();
+
+    // Send directly to Telegram
+    const token = telegramConfig.token?.trim();
+    const chatId = telegramConfig.chatId?.toString().trim();
+    if (!token || !chatId) {
+      alert("Telegram is not configured (token or chatId missing). Please configure in portfolio.js.");
+      return;
+    }
+
+    const text = [
+      `New contact via portfolio:`,
+      `From: ${name || "(no name)"}${email ? ` <${email}>` : ""}`,
+      `Subject: ${subjectRaw || "(no subject)"}`,
+      ``,
+      messageRaw || "(no message)"
+    ].join("\n");
+
+    try {
+      const tgRes = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ chat_id: chatId, text })
+      });
+      const tgJson = await tgRes.json();
+      if (!tgJson.ok) {
+        console.error("Telegram error:", tgJson);
+        alert("Couldn't send message to Telegram. Please try again later.");
+        return;
+      }
+      alert("Thanks! Your message was sent.");
+      setEmailOpen(false);
+    } catch (e) {
+      console.error("Telegram network error:", e);
+      alert("Network error sending to Telegram. You can try again later.");
+    }
+  }, [telegramConfig]);
+
   if (!socialMediaLinks.display) {
     return null;
   }
@@ -36,13 +117,19 @@ export default function socialMedia() {
         <a
           href={`mailto:${socialMediaLinks.gmail}`}
           className="icon-button google"
-          target="_blank"
-          rel="noopener noreferrer"
+          onClick={handleOpenEmail}
         >
           <i className="fas fa-envelope"></i>
           <span></span>
         </a>
       ) : null}
+
+      <EmailModal
+        isOpen={isEmailOpen}
+        isDark={isDark}
+        onClose={handleCloseEmail}
+        onSubmit={handleSubmitEmail}
+      />
 
       {socialMediaLinks.gitlab ? (
         <a

@@ -82,6 +82,58 @@
   transition: 0.2s ease-in;
 }
 
+/* Modal overlay with background blur */
+.project-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.project-modal {
+  background: #fff;
+  width: min(1000px, 92vw);
+  max-height: 80vh;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+}
+.dark-mode.project-modal { background: #1f2533; color: #fff; }
+.project-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.dark-mode .project-modal-header { border-color: rgba(255,255,255,0.15); }
+.close-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: inherit;
+}
+.project-modal-body {
+  padding: 1rem 1.25rem;
+  overflow: auto;
+}
+.project-modal-body pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0;
+  font-family: inherit;
+  line-height: 1.4;
+}
+
 @media (max-width: 768px) {
   .project-subtitle {
     font-size: 16px;

@@ -51,6 +51,7 @@
 
 .education-card-right {
   max-width: 70%;
+  min-width: 0; /* allow wrapping inside flex item */
 }
 
 .education-text-subHeader {
@@ -72,11 +73,85 @@
 .education-text-desc {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
+  overflow-wrap: anywhere; /* break long words */
+  word-break: break-word; /* ensure long strings wrap */
 }
 
 .education-text-bullets > ul {
-  margin-top: 0.5rem;
+  margin-top: 0.75rem;
+  display: grid;
+  /* Use fewer columns by default to prevent overflow */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-gap: 0.75rem 1rem;
+  list-style: none;
+  padding-left: 0; /* remove default list indent */
 }
+
+/* Responsive column counts */
+@media (max-width: 1200px) {
+  .education-text-bullets > ul {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+@media (max-width: 992px) {
+  .education-text-bullets > ul {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 768px) {
+  .education-text-bullets > ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 480px) {
+  .education-text-bullets > ul {
+    grid-template-columns: 1fr;
+  }
+}
+
+.education-text-bullets > ul li {
+  background: $lightBackground3;
+  border: 1px solid $lightBorder1;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 4px 10px $lightBoxShadow;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  // default glow color (fallback)
+  --glow: $educationCardBorder;
+}
+
+/* Assign vibrant RGB glow colors per card (cycling every 7) */
+.education-text-bullets > ul li:nth-child(7n + 1) { --glow: rgba(255, 77, 79, 1); }   /* red */
+.education-text-bullets > ul li:nth-child(7n + 2) { --glow: rgba(64, 169, 255, 1); }  /* blue */
+.education-text-bullets > ul li:nth-child(7n + 3) { --glow: rgba(54, 207, 201, 1); }  /* teal */
+.education-text-bullets > ul li:nth-child(7n + 4) { --glow: rgba(82, 196, 26, 1); }   /* green */
+.education-text-bullets > ul li:nth-child(7n + 5) { --glow: rgba(247, 89, 171, 1); }  /* pink */
+.education-text-bullets > ul li:nth-child(7n + 6) { --glow: rgba(250, 173, 20, 1); }  /* orange */
+.education-text-bullets > ul li:nth-child(7n + 7) { --glow: rgba(146, 84, 222, 1); }  /* purple */
+
+.dark-mode .education-text-bullets > ul li {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: $educationCardBorder;
+  box-shadow: 0 4px 10px $darkBoxShadow;
+}
+
+.education-text-bullets > ul li:hover {
+  transform: translateY(-2px);
+  border-color: var(--glow);
+  box-shadow:
+    0 0 10px rgba(0,0,0,0.06),
+    0 0 12px var(--glow),
+    0 0 24px var(--glow);
+}
+
+.dark-mode .education-text-bullets > ul li:hover {
+  border-color: var(--glow);
+  box-shadow:
+    0 0 10px rgba(255,255,255,0.05),
+    0 0 12px var(--glow),
+    0 0 24px var(--glow);
+}
+
 
 /* Media Query */
 

@@ -15,6 +15,10 @@
   margin-bottom: 20px;
 }
 
+.software-skill-inline {
+  cursor: pointer;
+}
+
 .software-skill-inline > i {
   color: $subTitle;
 }
@@ -22,10 +26,30 @@
 .software-skill-inline > i:hover {
   color: $skillsColor;
 }
+
 .software-skill-inline > p {
   color: $subTitle;
   font-size: 10px;
 }
+
 .software-skill-inline > i:hover ~ p {
+  color: $skillsColor;
+}
+
+.software-skill-inline > img,
+.software-skill-inline > svg {
+  width: 3rem;
+  height: 3rem;
+  fill: $subTitle;
+  color: $subTitle;
+}
+
+.software-skill-inline > img:hover ~ p,
+.software-skill-inline > svg:hover ~ p {
+  color: $skillsColor;
+}
+
+.software-skill-inline > svg:hover {
+  fill: $skillsColor;
   color: $skillsColor;
 }
