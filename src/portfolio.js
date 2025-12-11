@@ -187,6 +187,32 @@ const bigProjects = {
   projects: [
     {
       image: null,
+      projectName: "MicroNote - Microservices Note & Todo Application",
+      projectDesc: "Revolutionary hybrid architecture combining REST + gRPC for the ultimate note-taking and todo management experience. Features real-time collaboration, enterprise-grade performance, and infinite scalability with 10x faster internal communication.",
+      details: `🚀 Revolutionary Hybrid Architecture - The Perfect Fusion: REST for Simplicity + gRPC for Performance
+      
+• 10x faster internal communication with gRPC vs traditional REST
+• Real-time collaborative editing like Google Docs with live typing indicators
+• Enterprise-grade security with JWT authentication and Redis session management
+• Microservices mesh with Auth, Notes, Todos, and User services
+• Docker containerization with comprehensive monitoring (Prometheus, Grafana, Jaeger)
+• Advanced features: offline support, version history, intelligent caching, auto-scaling
+
+Tech Stack: Docker, Node.js, React, gRPC, MySQL, Redis, WebSocket
+Performance: 10x throughput improvement, 90% smaller network payloads, 70% CPU reduction`,
+      footerLink: [
+        { name: "Docker" },
+        { name: "Node.js" },
+        { name: "React" },
+        { name: "gRPC" },
+        { name: "MySQL" },
+        { name: "Redis" },
+        { name: "WebSocket" },
+        { name: "View Project", url: "https://github.com/kaleab343/Microservice-Implementing-Note-Todo-page-" }
+      ]
+    },
+    {
+      image: null,
       projectName: "Addis Ababa Traffic Enforcement Platform",
       projectDesc: "Full‑stack platform for traffic enforcement analytics and operations with admin portal, user portal, and PHP/MySQL backend with Supabase migration/sync.",
       details: `Admin + User platform for traffic enforcement.
