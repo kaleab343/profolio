@@ -15,7 +15,7 @@
     "react-easy-emoji": "^1.8.1",
     "react-headroom": "^3.0.0",
     "react-reveal": "^1.2.2",
-    "react-scripts": "^0.0.0",
+    "react-scripts": "4.0.3",
     "react-test-renderer": "^16.10.2",
     "react-twitter-embed": "3.0.3",
     "sass": "^1.32.8"
@@ -24,6 +24,7 @@
     "predeploy": "npm run build",
     "start": "node fetch.js && react-scripts start",
     "build": "node fetch.js && react-scripts build",
+    "vercel-build": "node fetch.js && react-scripts build",
     "deploy": "gh-pages -b master -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
