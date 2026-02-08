@@ -13,6 +13,47 @@ export default function Footer() {
   }, []);
   const handleCloseEmail = useCallback(() => setEmailOpen(false), []);
 
+  const handleSubmitMessage = useCallback(async (data) => {
+    const name = (data.name || "").trim();
+    const email = (data.email || "").trim();
+    const subject = (data.subject || "").trim();
+    const message = (data.message || "").trim();
+    
+    if (!name || !message) {
+      alert("Please provide your name and message.");
+      return false;
+    }
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          subject,
+          message
+        })
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        console.error('Send error:', result);
+        alert(result.error || 'Failed to send message. Please try again later.');
+        return false;
+      }
+
+      return true;
+    } catch (e) {
+      console.error('Network error:', e);
+      alert('Network error. Please try again later.');
+      return false;
+    }
+  }, []);
+
   const {isDark} = useContext(StyleContext);
   return (
     <Fade bottom duration={1000} distance="5px">
@@ -25,10 +66,15 @@ export default function Footer() {
           </a>
           {" "}|{" "}
           <a href="mailto:kaleab.lala123@gmail.com" rel="noreferrer" onClick={handleOpenEmail}>
-            Email
+            Contact
           </a>
         </p>
-       <EmailModal isOpen={isEmailOpen} onClose={handleCloseEmail} isDark={isDark} />
+       <EmailModal 
+         isOpen={isEmailOpen} 
+         onClose={handleCloseEmail} 
+         onSubmit={handleSubmitMessage}
+         isDark={isDark} 
+       />
       </div>
     </Fade>
   );

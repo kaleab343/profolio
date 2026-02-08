@@ -47,6 +47,8 @@ export default function StartupProject() {
                       ? "dark-mode project-card project-card-dark"
                       : "project-card project-card-light"
                   }
+                  onClick={() => project.projectUrl && openUrlInNewTab(project.projectUrl)}
+                  style={{ cursor: project.projectUrl ? 'pointer' : 'default' }}
                 >
                   {project.image ? (
                     <div className="project-image">
@@ -76,7 +78,10 @@ export default function StartupProject() {
                           <span
                             key={i}
                             className={isDark ? "dark-mode project-tag" : "project-tag"}
-                            onClick={() => (link.name === "Contact for details" && project.privateNotice) ? openPrivate(project) : openUrlInNewTab(link.url)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              (link.name === "Contact for details" && project.privateNotice) ? openPrivate(project) : openUrlInNewTab(link.url);
+                            }}
                           >
                             {link.name}
                           </span>
@@ -84,7 +89,10 @@ export default function StartupProject() {
                         {project.details ? (
                           <span
                             className={isDark ? "dark-mode project-tag" : "project-tag"}
-                            onClick={() => openDetails(project)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              openDetails(project);
+                            }}
                           >
                             More details
                           </span>

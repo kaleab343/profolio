@@ -189,6 +189,7 @@ const bigProjects = {
       image: null,
       projectName: "MicroNote - Microservices Note & Todo Application",
       projectDesc: "Revolutionary hybrid architecture combining REST + gRPC for the ultimate note-taking and todo management experience. Features real-time collaboration, enterprise-grade performance, and infinite scalability with 10x faster internal communication.",
+      projectUrl: "https://github.com/kaleab343/Microservice-Implementing-Note-Todo-page-.git",
       details: `🚀 Revolutionary Hybrid Architecture - The Perfect Fusion: REST for Simplicity + gRPC for Performance
       
 • 10x faster internal communication with gRPC vs traditional REST
@@ -213,8 +214,92 @@ Performance: 10x throughput improvement, 90% smaller network payloads, 70% CPU r
     },
     {
       image: null,
+      projectName: "መላ (Mela) - Ethiopian Block Management App",
+      projectDesc: "Bilingual (English/Amharic) Android application for managing electricity billing and payment calculations for residential blocks in Ethiopia. Features Ethiopian calendar integration, PDF export, and complete payment history tracking.",
+      projectUrl: "https://github.com/kaleab343/energy-counter-KWH.git",
+      details: `A professional Android app for Ethiopian electricity block management with bilingual support.
+
+Features:
+• Bilingual UI - Seamlessly switch between English and Amharic
+• Block Management - Manage blocks 355/01 to 355/66
+• Smart Calculations - Automatic electricity bills with tariff, VAT, and additional payments
+• Payment History - Complete tracking with search functionality
+• Ethiopian Calendar - Built-in date converter for local context
+• PDF Export - Generate and export payment records
+• Offline-First - SQLite database for reliable data storage
+
+Tech Stack: Java, AndroidX, SQLite, Material Design
+Target: Residential electricity billing in Ethiopia
+Min SDK: 24 (Android 7.0) | Target SDK: 35 (Android 15)`,
+      footerLink: [
+        { name: "Java" },
+        { name: "Android" },
+        { name: "SQLite" },
+        { name: "Material Design" },
+        { name: "View Project", url: "https://github.com/kaleab343/energy-counter-KWH.git" }
+      ]
+    },
+    {
+      image: null,
+      projectName: "NetWatch Pro - Network Monitoring & Management",
+      projectDesc: "Professional-grade network monitoring tool with device scanning, deep traffic analysis, and router control. Features 100% traffic capture with MITM analysis, protocol detection for 20+ protocols, and real-time network visibility.",
+      projectUrl: "https://github.com/kaleab343/wifi-monitor.git",
+      details: `Complete network visibility and management solution for administrators.
+
+Core Features:
+• Device Discovery - Quick ARP scan, Complete NetBIOS/mDNS/SSDP discovery
+• MITM Traffic Analysis - 100% packet capture in promiscuous mode
+• Protocol Detection - Identifies HTTP, HTTPS, DNS, SSH, FTP, RDP, mDNS, SSDP, ARP, and more
+• Router Control - Block/unblock devices via router API
+• Silent Device Detection - Finds connected but inactive devices
+• Real-time Monitoring - Live traffic analysis with upload/download statistics
+• Custom Device Management - Rename and categorize network devices
+
+Tech Stack: Python, Scapy, Tkinter, C++ (ARP scanner)
+Security: Administrator privileges, ARP spoofing with automatic state restoration
+Platform: Windows 10/11`,
+      footerLink: [
+        { name: "Python" },
+        { name: "Scapy" },
+        { name: "C++" },
+        { name: "Networking" },
+        { name: "Tkinter" },
+        { name: "View Project", url: "https://github.com/kaleab343/wifi-monitor.git" }
+      ]
+    },
+    {
+      image: null,
+      projectName: "Whistle - Traffic Reporting & Notifications",
+      projectDesc: "Android application for real-time traffic reporting with WebSocket notifications, audio recording, and wanted list management. Multi-flavor build system with dev, staging, and production environments.",
+      projectUrl: "https://github.com/kaleab343/traffic-app.git",
+      details: `Professional Android app for traffic violation reporting and citizen engagement.
+
+Features:
+• Real-time Notifications - WebSocket-based instant alerts
+• Audio Reporting - Record and upload violation reports
+• Wanted List - View and manage traffic violation records
+• Multi-Environment - Dev, staging, prod build flavors with separate backends
+• REST API Integration - Retrofit + OkHttp + Gson for networking
+• Background Services - Audio recording and notification services
+• Modern UI - Material Design with ConstraintLayout
+
+Tech Stack: Java, AndroidX, Retrofit, OkHttp, WebSocket, Gson
+Architecture: Multi-flavor builds, background services, REST APIs
+Min SDK: 24 | Target SDK: 35 | ProGuard optimized`,
+      footerLink: [
+        { name: "Java" },
+        { name: "Android" },
+        { name: "WebSocket" },
+        { name: "Retrofit" },
+        { name: "Material Design" },
+        { name: "View Project", url: "https://github.com/kaleab343/traffic-app.git" }
+      ]
+    },
+    {
+      image: null,
       projectName: "Addis Ababa Traffic Enforcement Platform",
       projectDesc: "Full‑stack platform for traffic enforcement analytics and operations with admin portal, user portal, and PHP/MySQL backend with Supabase migration/sync.",
+      projectUrl: "https://github.com/kaleab343/traffic-admin-center-and-custer-feedback.git",
       details: `Admin + User platform for traffic enforcement.
 Admin portal provides dashboards, officer/violation management, and analytics.
 User portal enables citizen login, reporting (whistles), and status tracking.
@@ -234,24 +319,26 @@ Focus: simplify enforcement workflows, unify data, and give clear insights to bo
       image: null,
       projectName: "Budget Manager Mobile App",
       projectDesc: "Android budgeting app to track income/expenses, categories, and analytics with offline-first storage. Tech: Java, XML, SQLite.",
+      projectUrl: "https://github.com/kaleab343/Budget-manager-.git",
       footerLink: [
         { name: "Java" },
         { name: "XML" },
         { name: "SQLite" },
-        { name: "Contact for details", url: "https://github.com/kaleab343/Budget-manager-.git" }
+        { name: "View Project", url: "https://github.com/kaleab343/Budget-manager-.git" }
       ]
     },
     {
       image: null,
       projectName: "E‑commerce Web and Mobile App",
       projectDesc: "Responsive web and mobile store: catalog, auth, cart, checkout, orders, admin. Tech: HTML, CSS, PHP, JavaScript, MySQL.",
+      projectUrl: "https://github.com/kaleab343/ecommerce-web-page-.git",
       footerLink: [
         { name: "HTML" },
         { name: "CSS" },
         { name: "PHP" },
         { name: "JavaScript" },
         { name: "MySQL" },
-        { name: "Contact for details", url: "https://github.com/kaleab343/ecommerce-web-page-.git" }
+        { name: "View Project", url: "https://github.com/kaleab343/ecommerce-web-page-.git" }
       ]
     }
   ],

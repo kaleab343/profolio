@@ -37,7 +37,7 @@ export default function EmailModal({ isOpen, onClose, onSubmit, isDark, successT
         if (btn) btn.disabled = true;
       } catch {}
       const banner = document.createElement("div");
-      banner.textContent = successText || "Thanks! I will contact you soon.";
+      banner.textContent = successText || "Thanks! I will contact you soon via Telegram.";
       banner.style.marginTop = "8px";
       banner.style.color = "#16a34a";
       form.appendChild(banner);
@@ -51,7 +51,7 @@ export default function EmailModal({ isOpen, onClose, onSubmit, isDark, successT
     <div className="email-modal-backdrop" onClick={handleBackdropClick}>
       <div ref={dialogRef} className={`email-modal ${isDark ? "dark" : ""}`} role="dialog" aria-modal="true">
         <div className="email-modal-header">
-          <div className="email-modal-title">Send me an email</div>
+          <div className="email-modal-title">📱 Send me a message via Telegram</div>
           <button className="email-modal-close" aria-label="Close" onClick={onClose}>
             ×
           </button>
@@ -59,15 +59,15 @@ export default function EmailModal({ isOpen, onClose, onSubmit, isDark, successT
         <form className="email-modal-body email-form" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="fromName">Your name</label>
-            <input id="fromName" name="fromName" type="text" className="email-input" placeholder="John Doe" required />
+            <input id="fromName" name="name" type="text" className="email-input" placeholder="John Doe" required />
           </div>
           <div>
-            <label htmlFor="fromEmail">Your email</label>
-            <input id="fromEmail" name="fromEmail" type="email" className="email-input" placeholder="you@example.com" required />
+            <label htmlFor="fromEmail">Your email (optional)</label>
+            <input id="fromEmail" name="email" type="email" className="email-input" placeholder="you@example.com" />
           </div>
           <div>
-            <label htmlFor="subject">Subject</label>
-            <input id="subject" name="subject" type="text" className="email-input" placeholder="Subject" required />
+            <label htmlFor="subject">Subject (optional)</label>
+            <input id="subject" name="subject" type="text" className="email-input" placeholder="Subject" />
           </div>
           <div className="stacked-row">
             <label htmlFor="message">Message</label>
@@ -75,7 +75,7 @@ export default function EmailModal({ isOpen, onClose, onSubmit, isDark, successT
           </div>
           <div className="email-modal-footer">
             <button type="button" className="btn btn-secondary" onClick={onClose}>Cancel</button>
-            <button type="submit" className="btn btn-primary">Send</button>
+            <button type="submit" className="btn btn-primary">Send via Telegram</button>
           </div>
         </form>
       </div>
