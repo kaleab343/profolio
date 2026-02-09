@@ -30,50 +30,7 @@ export default function SocialMedia() {
     }
 
     try {
-      const isDevelopment = process.env.NODE_ENV === 'development';
-      
-      // In development, send directly to Telegram API
-      if (isDevelopment) {
-        const TELEGRAM_BOT_TOKEN = "8220132078:AAGKRnRm_MTHHPOdvqZ4zoWzAxIUvBFnhWk";
-        const TELEGRAM_CHAT_ID = "500761652";
-        
-        const telegramMessage = `
-🔔 *New Portfolio Contact Message*
-
-👤 *Name:* ${name}
-${email ? `📧 *Email:* ${email}` : ''}
-${subject ? `📝 *Subject:* ${subject}` : ''}
-
-💬 *Message:*
-${message}
-
-⏰ *Received:* ${new Date().toLocaleString('en-US', { timeZone: 'Africa/Addis_Ababa' })}
-        `.trim();
-        
-        const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            chat_id: TELEGRAM_CHAT_ID,
-            text: telegramMessage,
-            parse_mode: 'Markdown'
-          })
-        });
-        
-        const result = await response.json();
-        
-        if (!result.ok) {
-          console.error('Telegram error:', result);
-          alert('Failed to send message via Telegram. Please try again later.');
-          return false;
-        }
-        
-        return true;
-      }
-      
-      // In production, use Vercel serverless function
+      // Always use the API endpoint (works in both dev and production)
       const response = await fetch('/api/send-email', {
         method: 'POST',
         headers: {
@@ -91,7 +48,9 @@ ${message}
 
       if (!response.ok || !result.success) {
         console.error('Send error:', result);
-        alert(result.error || 'Failed to send message. Please try again later.');
+        const errorMsg = result.error || 'Failed to send message. Please try again later.';
+        alert(errorMsg);
+        console.error('Full error details:', result.details);
         return false;
       }
 
@@ -99,7 +58,7 @@ ${message}
       return true;
     } catch (e) {
       console.error('Network error:', e);
-      alert('Network error. Please try again later.');
+      alert('Network error. Please try again later. Check console for details.');
       return false;
     }
   }, []);
