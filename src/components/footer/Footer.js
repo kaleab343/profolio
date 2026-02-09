@@ -24,6 +24,50 @@ export default function Footer() {
     }
 
     try {
+      const isDevelopment = process.env.NODE_ENV === 'development';
+      
+      // In development, send directly to Telegram API
+      if (isDevelopment) {
+        const TELEGRAM_BOT_TOKEN = "8220132078:AAGKRnRm_MTHHPOdvqZ4zoWzAxIUvBFnhWk";
+        const TELEGRAM_CHAT_ID = "500761652";
+        
+        const telegramMessage = `
+🔔 *New Portfolio Contact Message*
+
+👤 *Name:* ${name}
+${email ? `📧 *Email:* ${email}` : ''}
+${subject ? `📝 *Subject:* ${subject}` : ''}
+
+💬 *Message:*
+${message}
+
+⏰ *Received:* ${new Date().toLocaleString('en-US', { timeZone: 'Africa/Addis_Ababa' })}
+        `.trim();
+        
+        const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            chat_id: TELEGRAM_CHAT_ID,
+            text: telegramMessage,
+            parse_mode: 'Markdown'
+          })
+        });
+        
+        const result = await response.json();
+        
+        if (!result.ok) {
+          console.error('Telegram error:', result);
+          alert('Failed to send message via Telegram. Please try again later.');
+          return false;
+        }
+        
+        return true;
+      }
+      
+      // In production, use Vercel serverless function
       const response = await fetch('/api/send-email', {
         method: 'POST',
         headers: {
