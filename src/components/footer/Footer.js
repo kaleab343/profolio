@@ -24,8 +24,11 @@ export default function Footer() {
     }
 
     try {
-      // Always use the API endpoint (works in both dev and production)
-      const response = await fetch('/api/send-email', {
+      // Use different endpoints for dev and production
+      const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      const apiUrl = isDev ? 'http://localhost:3001/api/send-email' : '/api/send-email';
+      
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
