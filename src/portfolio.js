@@ -31,7 +31,7 @@ const greeting = {
   subTitle: emoji(
     "Computer Science graduate. Freelance full‑stack developer and systems/architecture designer building end‑to‑end solutions: web apps, Windows apps, mobile apps, and backend integrations (REST APIs, webhooks, WebSocket realtime) using JavaScript, PHP, and SQL."
   ),
-  resumeLink: "true", // keep truthy to enable local resume download
+  resumeLink: "https://drive.google.com/file/d/1ofFdKF_mqscH8WvXkSObnVvC9kK7Ldlu/view?usp=sharing", // Google Drive link - will be converted to direct download
   displayGreeting: true
 };
 
